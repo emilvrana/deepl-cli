@@ -7,7 +7,8 @@ Usage:
   translate.py --languages
   translate.py --usage
 
-Environment: DEEPL_API_KEY must be set.
+Environment: DEEPL_API_KEY must be set. Free keys (ending in ":fx") are
+sent to api-free.deepl.com, all other keys to api.deepl.com.
 """
 
 import argparse
@@ -18,8 +19,12 @@ import urllib.request
 import urllib.parse
 import urllib.error
 
-BASE_URL = "https://api.deepl.com/v2"
 API_KEY = os.environ.get("DEEPL_API_KEY", "")
+# DeepL API Free keys end in ":fx" and are rejected by the Pro endpoint.
+if API_KEY.endswith(":fx"):
+    BASE_URL = "https://api-free.deepl.com/v2"
+else:
+    BASE_URL = "https://api.deepl.com/v2"
 
 
 def _request(endpoint, params=None, method="POST"):

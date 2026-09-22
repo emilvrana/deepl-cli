@@ -59,7 +59,10 @@ Options: `default`, `more`, `less`, `prefer_more`, `prefer_less`
 ## Requirements
 
 - Python 3.6+
-- DeepL API key ([get one here](https://www.deepl.com/pro-api))
+- DeepL API key, Free or Pro ([get one here](https://www.deepl.com/pro-api))
+
+Free keys end in `:fx`; the tool detects this and uses `api-free.deepl.com`
+instead of `api.deepl.com`, so both plans work without extra configuration.
 
 ## License
 
